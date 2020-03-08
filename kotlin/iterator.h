@@ -14,7 +14,7 @@ namespace kt {
 
         virtual Boolean hasNext() { return true; }
 
-        T operator*() const { return _val; }
+        virtual T operator*() const { return _val; }
     };
 }
 

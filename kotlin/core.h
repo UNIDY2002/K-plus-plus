@@ -100,6 +100,12 @@ namespace kt {
         return input;
     }
 
+    // loops
+
+    void repeat(Int t, void block(Int &)) {
+        for (Int i = 0; i < t; ++i) block(i);
+    }
+
     // To-do's
 
     class NotImplementedError : std::exception {

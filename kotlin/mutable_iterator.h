@@ -52,6 +52,46 @@ namespace kt {
             return temp;
         }
     };
+
+    template<typename T>
+    struct LinkedListNode;
+
+    template<typename T>
+    class LinkedListIterator : public MutableIterator<T> {
+        LinkedListNode<T> *_node;
+
+    public:
+        explicit LinkedListIterator(LinkedListNode<T> *node) : _node(node) {}
+
+        T next() override {
+            auto e = **this;
+            ++*this;
+            return e;
+        };
+
+        Boolean hasNext() override { return _node->_next != nullptr; }
+
+        LinkedListIterator<T> &operator++() {
+            _node = _node->_next;
+            return *this;
+        }
+
+        LinkedListIterator<T> operator++(int) {
+            auto temp = *this;
+            ++*this;
+            return temp;
+        }
+
+        Boolean operator==(const LinkedListIterator<T> &other) const {
+            return _node == other._node;
+        }
+
+        Boolean operator!=(const LinkedListIterator<T> &other) const {
+            return _node != other._node;
+        }
+
+        T operator*() const override { return _node->_item; }
+    };
 }
 
 #endif

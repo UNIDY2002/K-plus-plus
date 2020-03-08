@@ -3,7 +3,14 @@
 using namespace kt;
 
 int main() {
-    auto list = MutableList<Int>(5, RIT(it * 2));
+    auto list = LinkedList<Int>();
+    list.add(2);
+    list.add(3);
+    list.add(3);
+    list.add(6);
+    list.add(7);
+    list.add(8);
+    println(list[4]);
     println(list);
 
     // iterator design pattern
@@ -17,5 +24,9 @@ int main() {
 
     // forEach with lambda
     list.forEach(IT(print(it);));
+    println();
+
+    println(list.contains(3));
+    println(list.contains(5));
     return 0;
 }
