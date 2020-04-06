@@ -1,6 +1,7 @@
 #ifndef KOTLIN_LIST_H
 #define KOTLIN_LIST_H
 
+#include <algorithm>
 #include "mutable_collection.h"
 
 namespace kt {
@@ -134,6 +135,10 @@ namespace kt {
 
         ArrayListIterator<T> &end() {
             return *new ArrayListIterator<T>(this, _size);
+        }
+
+        void sort() {
+            std::sort(_elem, _elem + _size);
         }
 
     };
@@ -419,6 +424,27 @@ namespace kt {
         result += ']';
         return result;
     }
+
+    template<typename T>
+    class Stack : public ArrayList<T> {
+    public:
+        Stack() = default;
+
+        void push(const T &elem) {
+            this->add(elem);
+        }
+
+        T &peek() {
+            if (this->isEmpty()) throw std::exception();
+            return this->get(this->getSize() - 1);
+        }
+
+        T &pop() {
+            T &obj = peek();
+            this->remove(this->getSize() - 1);
+            return obj;
+        }
+    };
 }
 
 #endif

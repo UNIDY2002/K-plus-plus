@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cxxabi.h>
 
 // lambda
 
@@ -117,6 +118,14 @@ namespace kt {
     Nothing &TODO() {
         throw NotImplementedError();
     }
+
+    // others
+
+    template<typename T>
+    String getType(const T &instance) {
+        return String(abi::__cxa_demangle(typeid(instance).name(), nullptr, nullptr, nullptr));
+    }
+
 }
 
 #endif
